@@ -20,3 +20,8 @@ summary_table <- coef(summary(model_fit))
 pval <- pnorm(abs(summary_table[, "t value"]),lower.tail=FALSE)*2
 summary_table <- cbind(summary_table, "p value" = round(pval,3))
 summary_table
+
+new_data <- data.frame("religion"="yes", "degree"="no", "country"="Norway",
+"age"=30, "gender"="male")
+
+round(predict(model_fit, new_data, type="p"),3)
