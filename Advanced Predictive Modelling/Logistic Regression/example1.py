@@ -24,3 +24,26 @@ logr.fit(x, y)
 # predict the tumor is cancerous where the size is 3.6cm
 predicted = logr.predict(numpy.array([3.46]).reshape(-1,1))
 print(predicted)
+
+# ----------------------------------------------------------------------------------
+# return value of log odds
+# log_odds = logr.coef_
+# odds = numpy.exp(log_odds)
+# print(odds)
+
+# this tells us that as the size of a tumor increases by 1mm the odds of it being a
+# cancerous tumor increases by 4x
+# ----------------------------------------------------------------------------------
+
+# the coefficient and intercept vlaues can be used to find the probability
+# that each tunor is cancerous
+# create a function that uses the model's coefficient and intercept values
+# to return a new value that represents probability that the given observation 
+# is a tumor
+def logit2prob(logr, x):
+    log_odds = logr.coef_ * x + logr.intercept_
+    odds = numpy.exp(log_odds)
+    probability = odds /(1 + odds)
+    return probability
+
+print(logit2prob(logr, x))
