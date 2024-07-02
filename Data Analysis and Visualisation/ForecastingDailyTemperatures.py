@@ -20,6 +20,17 @@ data = pd.DataFrame({
 
 print(data[0:5])
 
+# Convert to a pandas DataFrame
+data = pd.DataFrame({
+    'Date': date_range,
+    'Temperature': temperatures
+}).set_index('Date')
+
+# Save dataset to CSV file
+data.to_csv('daily_temperatures.csv')
+
+print("Dataset saved to 'daily_temperatures.csv'")
+
 # Step 3: Exploratory Data Analysis
 # Plot the time series data
 data.plot()
